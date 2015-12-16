@@ -68,7 +68,7 @@ add_shortcode('carousel', 'carousel_shortcode_add_code');
 function carousel_shortcode_add_code() {
 
 	// add the js and css
-	add_action('genesis_footer', 'carousel_add_code');
+	add_action('wp_footer', 'carousel_add_code');
 
 	function carousel_add_code() {
 		wp_enqueue_style( 'bootstrap_carousel_style', plugin_dir_url( __FILE__ ) . '/bootstrap/css/bootstrap.css' );
