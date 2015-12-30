@@ -41,6 +41,7 @@ function register_carousel_settings() {
 	//register our settings
 	register_setting( 'carousel_settings_group', 'carousel_image_array' );
 	register_setting( 'carousel_settings_group', 'carousel_message_array' );
+	register_setting( 'carousel_settings_group', 'carousel_link_array' );
 	register_setting( 'carousel_settings_group', 'carousel_height' );
 }
 
@@ -54,6 +55,10 @@ function carousel_settings_page() {
   if(isset($_POST['carousel_message_array'])) {
       update_option("carousel_message_array", implode("|", $_POST['carousel_message_array']));
       $messages .= " Messages updated.";
+  }
+	if(isset($_POST['carousel_link_array'])) {
+      update_option("carousel_link_array", implode("|", $_POST['carousel_link_array']));
+      $messages .= " Links updated.";
   }
 	if(isset($_POST['carousel_height'])) {
       update_option("carousel_height", $_POST['carousel_height']);
@@ -79,6 +84,8 @@ function carousel_shortcode_add_code() {
 	$images = explode('|', $images);
 	$messages = get_option("carousel_message_array");
 	$messages = explode('|', $messages);
+	$links = get_option("carousel_link_array");
+	$links = explode('|', $links);
 	$height = get_option("carousel_height");
 	$text = '<div id="carousel" class="carousel slide" data-ride="carousel">
 	<!-- Indicators -->
@@ -96,15 +103,15 @@ function carousel_shortcode_add_code() {
 	<div class="carousel-inner" role="listbox">';
   for($i = 0; $i <  $count; $i++) {
 				if($i == 0) {
-					$text .= '<div class="item active"';
+					$text .= '<a class="item active"';
 				} else {
-						$text .= '<div class="item"';
+						$text .= '<a class="item"';
 				}
-	$text .= ' style="background-image: url(' . stripslashes($images[$i]) . '); height: ' . $height . 'px; background-repeat: no-repeat; background-size: cover; background-position: center;">
+	$text .= ' style="background-image: url(' . stripslashes($images[$i]) . '); height: ' . $height . 'px; background-repeat: no-repeat; background-size: cover; background-position: center;" href="' . stripslashes($links[$i]) . '">
 			<div class="carousel-caption">
 				<h1>' . stripslashes($messages[$i]) . '</h1>
 			</div>
-	</div>';
+	</a>';
 	}
 
 	$text .= '</div>

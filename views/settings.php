@@ -3,6 +3,8 @@ $carousel_image_array = get_option("carousel_image_array");
 $carousel_image_array = explode("|", $carousel_image_array);
 $carousel_message_array = get_option("carousel_message_array");
 $carousel_message_array = explode("|", $carousel_message_array);
+$carousel_link_array = get_option("carousel_link_array");
+$carousel_link_array = explode("|", $carousel_link_array);
 $carousel_height = get_option("carousel_height");
 
 echo '<div class="wrap">
@@ -21,6 +23,8 @@ echo '<div class="wrap">
 					      			echo '<td><input class="slide' . $slideCount . '" name="carousel_image_array[]" type="text" value="' . stripslashes($carousel_image_array[$i]) . '"><input class="upload_image_button button" id="slide' . $slideCount . '" type="button" value="Upload Image" /></td></tr>';
 											echo '<tr><td><label for="carousel_message_array">Caption</label></td>';
 					      			echo '<td><input name="carousel_message_array[]" type="text" value="' . stripslashes($carousel_message_array[$i]) . '"></td></tr>';
+											echo '<tr><td><label for="carousel_link_array">Link</label></td>';
+					      			echo '<td><input name="carousel_link_array[]" type="text" value="' . stripslashes($carousel_link_array[$i]) . '"></td></tr>';
 											echo '<tr class="deleteSlide"><td><a class="button button-primary">Delete This Slide</a></td></tr></tbody>';
 										}
 										echo '<tr><td>&nbsp;</td></tr><tr><td><a class="button button-primary" id="addSlide">Add a New Slide</a></td></tr>';
