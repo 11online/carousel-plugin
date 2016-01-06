@@ -110,14 +110,14 @@ tbody.collapse.in {
   }
   .carousel-inner > .item.next,
   .carousel-inner > .item.active.right {
-    -webkit-transform: translate3d(100%, 0, 0);
-    transform: translate3d(100%, 0, 0);
+    -webkit-transform: translate3d(33%, 0, 0);
+    transform: translate3d(33%, 0, 0);
     left: 0;
   }
   .carousel-inner > .item.prev,
   .carousel-inner > .item.active.left {
-    -webkit-transform: translate3d(-100%, 0, 0);
-    transform: translate3d(-100%, 0, 0);
+    -webkit-transform: translate3d(-33%, 0, 0);
+    transform: translate3d(-33%, 0, 0);
     left: 0;
   }
   .carousel-inner > .item.next.left,
@@ -143,20 +143,20 @@ tbody.collapse.in {
   width: 100%;
 }
 .carousel-inner > .next {
-  left: 100%;
+  left: 33%;
 }
 .carousel-inner > .prev {
-  left: -100%;
+  left: -33%;
 }
 .carousel-inner > .next.left,
 .carousel-inner > .prev.right {
   left: 0;
 }
 .carousel-inner > .active.left {
-  left: -100%;
+  left: -33%;
 }
 .carousel-inner > .active.right {
-  left: 100%;
+  left: 33%;
 }
 .carousel-control {
   position: absolute;
@@ -172,22 +172,22 @@ tbody.collapse.in {
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
 }
 .carousel-control.left {
-  background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.0001) 100%);
+  /*background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.0001) 100%);
   background-image: -o-linear-gradient(left, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.0001) 100%);
   background-image: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0.0001)));
   background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.0001) 100%);
   background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#80000000', endColorstr='#00000000', GradientType=1);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#80000000', endColorstr='#00000000', GradientType=1);*/
 }
 .carousel-control.right {
   left: auto;
   right: 0;
-  background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.0001) 0%, rgba(0, 0, 0, 0.5) 100%);
+  /*background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.0001) 0%, rgba(0, 0, 0, 0.5) 100%);
   background-image: -o-linear-gradient(left, rgba(0, 0, 0, 0.0001) 0%, rgba(0, 0, 0, 0.5) 100%);
   background-image: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, 0.0001)), to(rgba(0, 0, 0, 0.5)));
   background-image: linear-gradient(to right, rgba(0, 0, 0, 0.0001) 0%, rgba(0, 0, 0, 0.5) 100%);
   background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#80000000', GradientType=1);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#80000000', GradientType=1);*/
 }
 .carousel-control:hover,
 .carousel-control:focus {
@@ -206,6 +206,7 @@ tbody.collapse.in {
   margin-top: -10px;
   z-index: 5;
   display: inline-block;
+  color: #333;
 }
 .carousel-control .icon-prev,
 .carousel-control .glyphicon-chevron-left {
@@ -232,7 +233,7 @@ tbody.collapse.in {
 }
 .carousel-indicators {
   position: absolute;
-  bottom: 10px;
+  bottom: 0px;
   left: 50%;
   z-index: 15;
   width: 60%;
@@ -247,7 +248,7 @@ tbody.collapse.in {
   height: 10px;
   margin: 1px;
   text-indent: -999px;
-  border: 1px solid #ffffff;
+  border: 1px solid #333;
   border-radius: 10px;
   cursor: pointer;
   padding-left: 0 !important;
@@ -258,19 +259,11 @@ tbody.collapse.in {
   margin: 0;
   width: 12px;
   height: 12px;
-  background-color: #ffffff;
+  background-color: #333;
 }
 .carousel-caption, .carousel-caption h1 {
-  position: absolute;
-  left: 15%;
-  right: 15%;
-  bottom: 20px;
-  z-index: 10;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  color: #ffffff;
   text-align: center;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+  padding-bottom: 10px;
 }
 .carousel-caption .btn {
   text-shadow: none;
@@ -292,14 +285,6 @@ tbody.collapse.in {
   .carousel-control .glyphicon-chevron-right,
   .carousel-control .icon-next {
     margin-right: -15px;
-  }
-  .carousel-caption {
-    left: 20%;
-    right: 20%;
-    padding-bottom: 30px;
-  }
-  .carousel-indicators {
-    bottom: 20px;
   }
 }
 .clearfix:before,
@@ -342,4 +327,13 @@ tbody.collapse.in {
 }
 .affix {
   position: fixed;
+}
+/* FOR THE COLUMNS */
+.col-xs-4 {
+  width: 33%;
+  display: inline-block;
+}
+
+.carousel-inner .item img {
+  padding-top: 20px;
 }

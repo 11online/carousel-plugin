@@ -42,6 +42,7 @@ function register_carousel_settings() {
 	register_setting( 'carousel_settings_group', 'carousel_image_array' );
 	register_setting( 'carousel_settings_group', 'carousel_message_array' );
 	register_setting( 'carousel_settings_group', 'carousel_link_array' );
+	register_setting( 'carousel_settings_group', 'carousel_icon_array' );
 	register_setting( 'carousel_settings_group', 'carousel_height' );
 }
 
@@ -60,6 +61,10 @@ function carousel_settings_page() {
       update_option("carousel_link_array", implode("|", $_POST['carousel_link_array']));
       $messages .= " Links updated.";
   }
+	if(isset($_POST['carousel_icon_array'])) {
+      update_option("carousel_icon_array", implode("|", $_POST['carousel_icon_array']));
+      $messages .= " Icons updated.";
+  }
 	if(isset($_POST['carousel_height'])) {
       update_option("carousel_height", $_POST['carousel_height']);
       $messages .= " Height updated.";
@@ -77,7 +82,7 @@ function carousel_shortcode_add_code() {
 
 	function carousel_add_code() {
 		wp_enqueue_style( 'bootstrap_carousel_style', plugin_dir_url( __FILE__ ) . '/bootstrap/css/bootstrap.css' );
-		wp_enqueue_script( 'bootstrap_carousel_script', plugin_dir_url( __FILE__ ) . '/bootstrap/js/bootstrap.min.js', array(), '1.0.0', true );
+		wp_enqueue_script( 'bootstrap_carousel_script', plugin_dir_url( __FILE__ ) . '/bootstrap/js/bootstrap.js', array(), '1.0.0', true );
 	}
 
   $images = get_option("carousel_image_array");
@@ -86,8 +91,19 @@ function carousel_shortcode_add_code() {
 	$messages = explode('|', $messages);
 	$links = get_option("carousel_link_array");
 	$links = explode('|', $links);
+	$icons = get_option("carousel_icon_array");
+	$icons = explode('|', $icons);
 	$height = get_option("carousel_height");
-	$text = '<div id="carousel" class="carousel slide" data-ride="carousel">
+	$text = '';
+	$count = count($images);
+	$text .= '<div style="height: ' . $height . 'px; overflow:hidden">';
+  for($i = 0; $i <  $count; $i++) {
+		$text .= '<div class="backgroundSlide' . $i . ' backgroundSlides" style="background-image: url(' . stripslashes($images[$i]) . '); height: ' . $height . 'px; background-repeat: no-repeat; background-size: cover; background-position: center;"></div>';
+	}
+	$text .= '</div>';
+
+	// the bottom portion
+	$text .= '<div id="carousel" class="carousel slide">
 	<!-- Indicators -->
 	<ol class="carousel-indicators">';
 	$count = count($images);
@@ -103,15 +119,19 @@ function carousel_shortcode_add_code() {
 	<div class="carousel-inner" role="listbox">';
   for($i = 0; $i <  $count; $i++) {
 				if($i == 0) {
-					$text .= '<a class="item active"';
+					$text .= '<div class="item active">';
 				} else {
-						$text .= '<a class="item"';
+						$text .= '<div class="item">';
 				}
-	$text .= ' style="background-image: url(' . stripslashes($images[$i]) . '); height: ' . $height . 'px; background-repeat: no-repeat; background-size: cover; background-position: center;" href="' . stripslashes($links[$i]) . '">
-			<div class="carousel-caption">
-				<h1>' . stripslashes($messages[$i]) . '</h1>
-			</div>
-	</a>';
+	$text .= '<div class="col-xs-4">
+							<a style="height: 200px;" href="' . stripslashes($links[$i]) . '">
+								<img src="' . stripslashes($icons[$i]) . '" class="aligncenter">
+									<div class="carousel-caption">
+										<h1>' . stripslashes($messages[$i]) . '</h1>
+									</div>
+							</a>
+						</div>
+					</div>';
 	}
 
 	$text .= '</div>
@@ -125,6 +145,42 @@ function carousel_shortcode_add_code() {
 	<span class="sr-only">Next</span>
 	</a>
 	</div>';
+	$text .= "
+	<script>
+      jQuery(document).ready(function() {
+				// when the slider is done sliding
+        jQuery('#carousel').on('slid.bs.carousel', function() {
+          var to_slide;
+          // grab the active carousel indicator
+          to_slide = jQuery('#carousel .carousel-indicators .active').attr('data-slide-to');
+					// hide all above background image and show the one we want
+					jQuery('.backgroundSlides').fadeOut();
+					jQuery('.backgroundSlide' + to_slide).fadeIn();
+        });
+				jQuery('#carousel').carousel({
+					interval: 10000
+				})
+
+				// clone the icons for the menu
+				jQuery('.carousel .item').each(function(){
+					var next = jQuery(this).next();
+					if (!next.length) {
+						next = jQuery(this).siblings(':first');
+					}
+					next.children(':first-child').clone().appendTo(jQuery(this));
+
+					// the i<1 is how many icons you have showing at a time -2. So 3 will be for 5 icons showing at a time
+					for (var i=0;i<1;i++) {
+    				next=next.next();
+    				if (!next.length) {
+    					next = jQuery(this).siblings(':first');
+  					}
+						next.children(':first-child').clone().appendTo(jQuery(this));
+					}
+				});
+
+      });
+    </script>";
 	return $text;
 
 }
