@@ -57,6 +57,10 @@ function carousel_settings_page() {
       update_option("carousel_message_array", implode("|", $_POST['carousel_message_array']));
       $messages .= " Messages updated.";
   }
+	if(isset($_POST['carousel_image_message_array'])) {
+      update_option("carousel_image_message_array", implode("|", $_POST['carousel_image_message_array']));
+      $messages .= " Slide Messages updated.";
+  }
 	if(isset($_POST['carousel_link_array'])) {
       update_option("carousel_link_array", implode("|", $_POST['carousel_link_array']));
       $messages .= " Links updated.";
@@ -89,6 +93,8 @@ function carousel_shortcode_add_code() {
 	$images = explode('|', $images);
 	$messages = get_option("carousel_message_array");
 	$messages = explode('|', $messages);
+	$image_messages = get_option("carousel_image_message_array");
+	$image_messages = explode('|', $image_messages);
 	$links = get_option("carousel_link_array");
 	$links = explode('|', $links);
 	$icons = get_option("carousel_icon_array");
@@ -96,19 +102,31 @@ function carousel_shortcode_add_code() {
 	$height = get_option("carousel_height");
 	$text = '';
 	$count = count($images);
-	$text .= '<div style="height: ' . $height . 'px; overflow:hidden">';
+	$text .= '
+	<div id="carouselTop" class="carousel slide">
+	<!-- Wrapper for slides -->
+	<div class="carousel-inner" role="listbox">';
   for($i = 0; $i <  $count; $i++) {
-		$text .= '<div class="backgroundSlide' . $i . ' backgroundSlides" style="background-image: url(' . stripslashes($images[$i]) . '); height: ' . $height . 'px; background-repeat: no-repeat; background-size: cover; background-position: center;"></div>';
+				if($i == 0) {
+					$text .= '<a class="item active"';
+				} else {
+						$text .= '<a class="item"';
+				}
+	$text .= 'style="background-image: url(' . stripslashes($images[$i]) . '); height: ' . $height . 'px; background-repeat: no-repeat; background-size: cover; background-position: center;" href="' . stripslashes($links[$i]) . '">
+									<div class="carousel-caption">
+										<h1>' . stripslashes($image_messages[$i]) . '</h1>
+									</div>
+							</a>';
 	}
-	$text .= '</div>';
 
+	$text .= '</div></div>';
 	// the bottom portion
 	$text .= '<div id="carousel" class="carousel slide">
 	<!-- Indicators -->
 	<ol class="carousel-indicators">';
 	$count = count($images);
 	for($i = 0; $i <  $count; $i++) {
-			if($i == 0) {
+			if($i == $count - 1) {
 				$text .= '<li data-target="#carousel" data-slide-to="0" class="active"></li>';
 			} else {
 				$text .='<li data-target="#carousel" data-slide-to="' . $i . '"></li>';
@@ -118,7 +136,7 @@ function carousel_shortcode_add_code() {
 	<!-- Wrapper for slides -->
 	<div class="carousel-inner" role="listbox">';
   for($i = 0; $i <  $count; $i++) {
-				if($i == 0) {
+				if($i == $count - 1) {
 					$text .= '<div class="item active">';
 				} else {
 						$text .= '<div class="item">';
@@ -148,21 +166,35 @@ function carousel_shortcode_add_code() {
 	$text .= "
 	<script>
       jQuery(document).ready(function() {
-				// when the slider is done sliding
-        jQuery('#carousel').on('slid.bs.carousel', function() {
+				// move the top slides with the circles
+        jQuery('li[data-target=#carousel]').on('click', function() {
           var to_slide;
+					var last_slide = " . $count . ";
           // grab the active carousel indicator
-          to_slide = jQuery('#carousel .carousel-indicators .active').attr('data-slide-to');
+          to_slide = jQuery(this).attr('data-slide-to');
 					// hide all above background image and show the one we want
-					jQuery('.backgroundSlides').fadeOut();
-					jQuery('.backgroundSlide' + to_slide).fadeIn();
+					if(to_slide == last_slide - 1) {
+						jQuery('#carouselTop').carousel(0);
+					} else {
+						jQuery('#carouselTop').carousel(parseInt(to_slide)+1);
+					}
         });
-				jQuery('#carousel').carousel({
-					interval: 10000
-				})
+				// move the top slides with the arrows
+        jQuery('a[data-slide=next]').on('click', function() {
+					jQuery('#carouselTop').carousel('next');
+        });
+				// move the top slides with the arrows
+        jQuery('a[data-slide=prev]').on('click', function() {
+					jQuery('#carouselTop').carousel('prev');
+        });
+
+				jQuery('#carousel, #carouselTop').carousel({
+					interval: 4000,
+					pause: 'none'
+				});
 
 				// clone the icons for the menu
-				jQuery('.carousel .item').each(function(){
+				jQuery('#carousel .item').each(function(){
 					var next = jQuery(this).next();
 					if (!next.length) {
 						next = jQuery(this).siblings(':first');
