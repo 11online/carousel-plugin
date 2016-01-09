@@ -126,7 +126,7 @@ function carousel_shortcode_add_code() {
 	<ol class="carousel-indicators">';
 	$count = count($images);
 	for($i = 0; $i <  $count; $i++) {
-			if($i == $count - 1) {
+			if($i == $count - 2) {
 				$text .= '<li data-target="#carousel" data-slide-to="0" class="active"></li>';
 			} else {
 				$text .='<li data-target="#carousel" data-slide-to="' . $i . '"></li>';
@@ -136,7 +136,7 @@ function carousel_shortcode_add_code() {
 	<!-- Wrapper for slides -->
 	<div class="carousel-inner" role="listbox">';
   for($i = 0; $i <  $count; $i++) {
-				if($i == $count - 1) {
+				if($i == $count - 2) {
 					$text .= '<div class="item active">';
 				} else {
 						$text .= '<div class="item">';
@@ -202,7 +202,7 @@ function carousel_shortcode_add_code() {
 					next.children(':first-child').clone().appendTo(jQuery(this));
 
 					// the i<1 is how many icons you have showing at a time -2. So 3 will be for 5 icons showing at a time
-					for (var i=0;i<1;i++) {
+					for (var i=0;i<3;i++) {
     				next=next.next();
     				if (!next.length) {
     					next = jQuery(this).siblings(':first');
