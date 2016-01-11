@@ -218,4 +218,49 @@ function carousel_shortcode_add_code() {
 }
 
 
+/****** SECONDARY MENU ************/
+add_shortcode('carousel_secondary', 'carousel_secondary_shortcode_add_code');
+
+function carousel_secondary_shortcode_add_code() {\
+
+	// add the js and css
+	add_action('wp_footer', 'carousel_add_code');
+
+	function carousel_add_code() {
+		wp_enqueue_style( 'bootstrap_carousel_style', plugin_dir_url( __FILE__ ) . '/bootstrap/css/bootstrap.css' );
+	}
+
+  $messages = get_option("carousel_message_array");
+	$messages = explode('|', $messages);
+	$links = get_option("carousel_link_array");
+	$links = explode('|', $links);
+	$icons = get_option("carousel_icon_array");
+	$icons = explode('|', $icons);
+	$text = '';
+	$text .= "<div id='carousel-explore'>Explore</div>";
+	$text .= "<div class='carousel-secondary-menu-dropdown-container'><div class='carousel-secondary-menu-dropdown'>";
+	$count = count($icons);
+  for($i = 0; $i <  $count; $i++) {
+		$plusOne = $i+1;
+		$text .= "<div class='carousel-menu-item animated fadeInDown _" . $plusOne . "'>
+								<a href='" . $links[$i] . "'>
+									<img src='" . $icons[$i] . "'>
+									<h2>" . $messages[$i] . "</h2>
+								</a>
+							</div>";
+	}
+	$text .= "</div></div>";
+	$text .= "
+	<script>
+    jQuery(document).ready(function() {
+			//toggle the menu
+			jQuery('#carousel-explore').click(function() {
+				jQuery('.carousel-secondary-menu-dropdown-container').fadeToggle();
+			});
+		});
+	</script>";
+	return $text;
+}
+
+
 ?>

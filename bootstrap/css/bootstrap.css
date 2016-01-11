@@ -425,3 +425,193 @@ tbody.collapse.in {
 	height: 0px;
 	width: 0px;
 }
+
+
+/*secondary menu*/
+.carousel-secondary-menu-dropdown-container {
+  display: none;
+  position: relative;
+}
+
+#carousel-explore {
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 30px;
+  text-align: right;
+  padding: 15px;
+}
+#carousel-explore:after {
+  content: " \f347";
+  font-family: "Dashicons";
+  height: 30px;
+  vertical-align: middle;
+}
+
+.carousel-secondary-menu-dropdown {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  position: absolute;
+  background: rgba(230, 230, 230, .95);
+  padding-top: 30px;
+  border-bottom: 1px solid #666;
+  z-index: 99999999999999999;
+  overflow: hidden;
+  width: 100%;
+}
+
+.carousel-menu-item {
+  width: 150px;
+  text-align: center;
+  opacity: 1;
+  margin-top: 0px;
+}
+
+
+/*stagger CSS*/
+._1 {
+  -webkit-animation-delay: 0.2s;
+  -moz-animation-delay: 0.2s;
+  -ms-animation-delay: 0.2s;
+  -o-animation-delay: 0.2s;
+  animation-delay: 0.2s;
+}
+._2 {
+  -webkit-animation-delay: 0.4s;
+  -moz-animation-delay: 0.4s;
+  -ms-animation-delay: 0.4s;
+  -o-animation-delay: 0.4s;
+  animation-delay: 0.4s;
+}
+._3 {
+  -webkit-animation-delay: 0.6s;
+  -moz-animation-delay: 0.6s;
+  -ms-animation-delay: 0.6s;
+  -o-animation-delay: 0.6s;
+  animation-delay: 0.6s;
+}
+._4 {
+  -webkit-animation-delay: 0.8s;
+  -moz-animation-delay: 0.8s;
+  -ms-animation-delay: 0.8s;
+  -o-animation-delay: 0.8s;
+  animation-delay: 0.8s;
+}
+._5 {
+  -webkit-animation-delay: 1s;
+  -moz-animation-delay: 1s;
+  -ms-animation-delay: 1s;
+  -o-animation-delay: 1s;
+  animation-delay: 1s;
+}
+._6 {
+  -webkit-animation-delay: 1.2s;
+  -moz-animation-delay: 1.2s;
+  -ms-animation-delay: 1.2s;
+  -o-animation-delay: 1.2s;
+  animation-delay: 1.2s;
+}
+._7 {
+  -webkit-animation-delay: 1.4s;
+  -moz-animation-delay: 1.4s;
+  -ms-animation-delay: 1.4s;
+  -o-animation-delay: 1.4s;
+  animation-delay: 1.4s;
+}
+._8 {
+  -webkit-animation-delay: 1.6s;
+  -moz-animation-delay: 1.6s;
+  -ms-animation-delay: 1.6s;
+  -o-animation-delay: 1.6s;
+  animation-delay: 1.6s;
+}
+._9 {
+  -webkit-animation-delay: 1.8s;
+  -moz-animation-delay: 1.8s;
+  -ms-animation-delay: 1.8s;
+  -o-animation-delay: 1.8s;
+  animation-delay: 1.8s;
+}
+._10 {
+  -webkit-animation-delay: 2s;
+  -moz-animation-delay: 2s;
+  -ms-animation-delay: 2s;
+  -o-animation-delay: 2s;
+  animation-delay: 2s;
+}
+._11 {
+  -webkit-animation-delay: 2.2s;
+  -moz-animation-delay: 2.2s;
+  -ms-animation-delay: 2.2s;
+  -o-animation-delay: 2.2s;
+  animation-delay: 2.2s;
+}
+._12 {
+  -webkit-animation-delay: 2.4s;
+  -moz-animation-delay: 2.4s;
+  -ms-animation-delay: 2.4s;
+  -o-animation-delay: 2.4s;
+  animation-delay: 2.4s;
+}
+._13 {
+  -webkit-animation-delay: 2.6s;
+  -moz-animation-delay: 2.6s;
+  -ms-animation-delay: 2.6s;
+  -o-animation-delay: 2.6s;
+  animation-delay: 2.6s;
+}
+._14 {
+  -webkit-animation-delay: 2.8s;
+  -moz-animation-delay: 2.8s;
+  -ms-animation-delay: 2.8s;
+  -o-animation-delay: 2.8s;
+  animation-delay: 2.8s;
+}
+._15 {
+  -webkit-animation-delay: 3s;
+  -moz-animation-delay: 3s;
+  -ms-animation-delay: 3s;
+  -o-animation-delay: 3s;
+  animation-delay: 3s;
+}
+
+/*animate css*/
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@-webkit-keyframes fadeInDown {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+.fadeInDown {
+  -webkit-animation-name: fadeInDown;
+  animation-name: fadeInDown;
+}
