@@ -437,8 +437,6 @@ tbody.collapse.in {
   cursor: pointer;
   font-weight: bold;
   font-size: 30px;
-  text-align: right;
-  padding: 15px;
 }
 #carousel-explore:after {
   content: " \f347";

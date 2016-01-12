@@ -237,7 +237,7 @@ function carousel_secondary_shortcode_add_code() {\
 	$icons = get_option("carousel_icon_array");
 	$icons = explode('|', $icons);
 	$text = '';
-	$text .= "<div id='carousel-explore'>Explore</div>";
+	//$text .= "<div id='carousel-explore'>Explore</div>";
 	$text .= "<div class='carousel-secondary-menu-dropdown-container'><div class='carousel-secondary-menu-dropdown'>";
 	$count = count($icons);
   for($i = 0; $i <  $count; $i++) {
