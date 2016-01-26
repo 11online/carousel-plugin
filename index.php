@@ -43,6 +43,7 @@ function register_carousel_settings() {
 	register_setting( 'carousel_settings_group', 'carousel_message_array' );
 	register_setting( 'carousel_settings_group', 'carousel_link_array' );
 	register_setting( 'carousel_settings_group', 'carousel_height' );
+	register_setting( 'carousel_settings_group', 'carousel_speed' );
 }
 
 function carousel_settings_page() {
@@ -63,6 +64,10 @@ function carousel_settings_page() {
 	if(isset($_POST['carousel_height'])) {
       update_option("carousel_height", $_POST['carousel_height']);
       $messages .= " Height updated.";
+  }
+	if(isset($_POST['carousel_speed'])) {
+      update_option("carousel_speed", $_POST['carousel_speed']);
+      $messages .= " Speed updated.";
   }
 
 	include_once('views/settings.php');
@@ -87,6 +92,7 @@ function carousel_shortcode_add_code() {
 	$links = get_option("carousel_link_array");
 	$links = explode('|', $links);
 	$height = get_option("carousel_height");
+	$speed = get_option("carousel_speed");
 	$text = '<div id="carousel" class="carousel slide" data-ride="carousel">
 	<!-- Indicators -->
 	<ol class="carousel-indicators">';
@@ -125,6 +131,13 @@ function carousel_shortcode_add_code() {
 	<span class="sr-only">Next</span>
 	</a>
 	</div>';
+	$text .= '<script>
+	jQuery(document).ready(function() {
+		jQuery(".carousel").carousel({
+			interval: ' . $speed . '
+		});
+	});
+	</script>';
 	return $text;
 
 }

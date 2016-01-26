@@ -6,6 +6,7 @@ $carousel_message_array = explode("|", $carousel_message_array);
 $carousel_link_array = get_option("carousel_link_array");
 $carousel_link_array = explode("|", $carousel_link_array);
 $carousel_height = get_option("carousel_height");
+$carousel_speed = get_option("carousel_speed");
 
 echo '<div class="wrap">
 	<div id="carousel-settings">
@@ -33,6 +34,12 @@ echo '<div class="wrap">
                         <td><input type="number" name="carousel_height" id="carousel_height" value="';
                         if($carousel_height) {
                             echo stripslashes($carousel_height);
+                        }
+                        echo '"></td></tr><tr>
+												<td><label for="carousel_speed">Speed in Miliseconds</label></td>
+                        <td><input type="number" name="carousel_speed" id="carousel_speed" value="';
+                        if($carousel_speed) {
+                            echo stripslashes($carousel_speed);
                         }
                         echo '"></td>
                     </table>';
