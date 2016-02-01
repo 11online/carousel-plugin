@@ -188,9 +188,13 @@ function carousel_shortcode_add_code() {
 					jQuery('#carouselTop').carousel('prev');
         });
 
-				jQuery('#carousel, #carouselTop').carousel({
+				jQuery('#carousel').carousel({
 					interval: 4000,
 					pause: 'none'
+				});
+
+				jQuery('#carousel').on('slide.bs.carousel', function () {
+				  	jQuery('#carouselTop').carousel('next');
 				});
 
 				// clone the icons for the menu
