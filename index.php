@@ -67,7 +67,7 @@ function quote_shortcode_add_code() {
 
 	$messages = get_option("quote_message_array");
 	$messages = explode('|', $messages);
-	$text = '<div id="carousel" class="carousel slide" data-ride="carousel">
+	$text = '<div id="carousel" class="carousel slide carousel-fade" data-ride="carousel">
 	<!-- Indicators -->
 	<ol class="carousel-indicators">';
 	$count = count($messages);
