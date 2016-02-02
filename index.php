@@ -32,6 +32,7 @@ function quote_admin_enqueue($hook) {
 	if($hook == 'settings_page_Quote') {
 		wp_enqueue_media();
 		wp_enqueue_script( 'quote_settings_page_script', plugin_dir_url( __FILE__ ) . 'views/js/settings.js' );
+		wp_enqueue_script( 'quote_settings_page_script', plugin_dir_url( __FILE__ ) . 'views/js/Sortable.min.js' );
 	}
 }
 add_action( 'admin_enqueue_scripts', 'quote_admin_enqueue' );

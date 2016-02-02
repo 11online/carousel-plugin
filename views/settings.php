@@ -8,12 +8,12 @@ echo '<div class="wrap">
 	    <h2>Quote quote Settings</h2>
 
                 <form method="post" action="">
-                    <table>
+                    <table class="sortable">
 										<tbody class="slideGroup"></tbody>';
 										$count = count($quote_message_array);
 										for($i = 0; $i <  $count; $i++) {
 											$slideCount = $i + 1;
-											echo '<tbody class="slideGroup"><tr><td><h3>Slide ' . $slideCount . '</h3></td></tr>';
+											echo '<tbody class="slideGroup"><tr><td><h3><span class="dashicons dashicons-sort"></span> Slide ' . $slideCount . '</h3></td></tr>';
 											echo '<tr><td><label for="quote_message_array">Caption</label></td>';
 					      			echo '<td><textarea name="quote_message_array[]" rows="10" cols="50">' . stripslashes($quote_message_array[$i]) . '</textarea></td></tr>';
 											echo '<tr class="deleteSlide"><td><a class="button button-primary">Delete This Slide</a></td></tr></tbody>';
