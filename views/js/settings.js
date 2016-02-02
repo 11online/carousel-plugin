@@ -1,5 +1,7 @@
 jQuery(document).ready(function() {
 
+	jQuery('.sortable').sortable();
+
 	var slideCount = 1;
 	jQuery("#addSlide").click(function() {
 		jQuery(".slideGroup:last").after(

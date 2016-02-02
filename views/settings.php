@@ -14,12 +14,12 @@ echo '<div class="wrap">
 	    <h2>Carousel Settings</h2>
 
                 <form method="post" action="">
-                    <table>
+                    <table class="sortable">
 										<tbody class="slideGroup"></tbody>';
 										$count = count($carousel_image_array);
 										for($i = 0; $i <  $count; $i++) {
 											$slideCount = $i + 1;
-											echo '<tbody class="slideGroup"><tr><td><h3>Slide ' . $slideCount . '</h3></td></tr>';
+											echo '<tbody class="slideGroup"><tr><td><h3><span class="dashicons dashicons-sort"></span> Slide ' . $slideCount . '</h3></td></tr>';
 											echo '<tr><td><label for="carousel_image_array">Image Url</label></td>';
 					      			echo '<td><input class="slide' . $slideCount . '" name="carousel_image_array[]" type="text" value="' . stripslashes($carousel_image_array[$i]) . '"><input class="upload_image_button button" id="slide' . $slideCount . '" type="button" value="Upload Image" /></td></tr>';
 											echo '<tr><td><label for="carousel_message_array">Caption</label></td>';

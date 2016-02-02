@@ -32,6 +32,7 @@ function carousel_admin_enqueue($hook) {
 	if($hook == 'settings_page_Carousel') {
 		wp_enqueue_media();
 		wp_enqueue_script( 'settings_page_script', plugin_dir_url( __FILE__ ) . 'views/js/settings.js' );
+		wp_enqueue_script( 'settings_page_script', plugin_dir_url( __FILE__ ) . 'views/js/Sortable.min.js' );
 	}
 }
 add_action( 'admin_enqueue_scripts', 'carousel_admin_enqueue' );
